@@ -34,18 +34,18 @@ int menuObatPusingPil() {
     return pilihNamaObat;
 }
 
-// int menuObatPusingTablet() {
-//     int pilihNamaObat;
+int menuObatPusingSirup() {
+    int pilihNamaObat2;
 
-//     cout << "===== Menu obat pusing =====" << endl;
-//     cout << "1. Sanmol" << endl;
-//     cout << "2. Bodrex" << endl;
-//     cout << "3. Paramex" << endl;
-//     cout << "4. Panadol Extra" << endl;
-//     cout << "Pilih mau obat pusing apa?";
-//     cin >> pilihNamaObat;
-//     return pilihNamaObat;
-// }
+    cout << "===== Menu obat pusing =====" << endl;
+    cout << "1. Sanmol Sirup" << endl;
+    cout << "2. Tempra Forte" << endl;
+    cout << "3. Panadol anak sirup" << endl;
+    cout << "4. Termorex" << endl;
+    cout << "Pilih mau obat pusing apa?";
+    cin >> pilihNamaObat2;
+    return pilihNamaObat2;
+}
 
 int totalHarga() {
     
@@ -67,19 +67,19 @@ int main() {
             if (namaObat == 1) {
                 harga = 5000;
                 cout << "Kamu memilih Sanmol";    
-
+                
             } else if (namaObat == 2) {
                 harga = 7000;
                 cout << "Kamu memilih Bodrex";    
-
+                
             } else if (namaObat == 3) {
                 harga = 6000;
                 cout << "Kamu memilih Paramex";    
-
+                
             } else if (namaObat == 4) {
                 harga = 8000;
                 cout << "Kamu memilih Panadol Extra";    
-        
+                
             } else {
                 cout << "Pilihan Tidak ada";
             }
@@ -87,9 +87,29 @@ int main() {
             cout << "Total Harga : " << harga << endl;
             
         } else if (jenisObat == 2) {
-            /* code */
-        } else if (jenisObat == 3) {
-            /* code */
+            int namaObat2 = menuObatPusingSirup();
+            int harga = 0;
+            
+            if (namaObat2 == 1) {
+                harga = 5000;
+                cout << "Kamu memilih Sanmol Sirup";    
+                
+            } else if (namaObat2 == 2) {
+                harga = 6000;
+                cout << "Kamu memilih Tempra Forte";    
+                
+            } else if (namaObat2 == 3) {
+                harga = 7000;
+                cout << "Kamu memilih Panadol anak sirup";    
+                
+            } else if (namaObat2 == 4) {
+                harga = 8000;
+                cout << "Kamu memilih Termorex";    
+                
+            } else {
+                cout << "Pilihan Tidak ada";
+            }
+            
         } else {
             cout << "Tidak ada di pilihan";
         }
