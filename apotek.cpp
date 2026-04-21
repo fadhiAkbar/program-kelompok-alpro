@@ -6,7 +6,7 @@ void pilihMenu() {
     cout << "1. Obat Pusing" << endl;
     cout << "2. Obat Batuk Pilek" << endl;
     cout << "3. Obat Lambung" << endl;
-    cout << "Mau nyari obat apa kak?";    
+    cout << "Mau nyari obat apa kak? : ";    
 }
 
 int menuObatDetail() {
@@ -14,10 +14,11 @@ int menuObatDetail() {
 
     cout << "===== Kategori jenis obat =====" << endl;
     cout << "1. Obat Pil" << endl;
-    cout << "2. Obat Tablet" << endl;
-    cout << "3. Obat Sirup" << endl;
-    cout << "Pilih Jenis apa?";
+    cout << "2. Obat Sirup" << endl;
+    cout << "Pilih Jenis apa? : ";
     cin >> pilih;
+    cout << endl;
+    cout << endl;
     return pilih;
 }
 
@@ -29,8 +30,10 @@ int menuObatPusingPil() {
     cout << "2. Bodrex" << endl;
     cout << "3. Paramex" << endl;
     cout << "4. Panadol Extra" << endl;
-    cout << "Pilih mau obat pusing apa?";
+    cout << "Pilih mau obat pusing apa? : ";
     cin >> pilihNamaObat;
+    cout << endl;
+    cout << endl;
     return pilihNamaObat;
 }
 
@@ -44,15 +47,16 @@ int menuObatPusingSirup() {
     cout << "4. Termorex" << endl;
     cout << "Pilih mau obat pusing apa?";
     cin >> pilihNamaObat2;
+    cout << endl;
+    cout << endl;
     return pilihNamaObat2;
-}
-
-int totalHarga() {
-    
 }
 
 
 int main() {
+    string ketentuan;
+    
+    do {
     int pilihObat;
     pilihMenu();
     cin >> pilihObat;
@@ -85,6 +89,17 @@ int main() {
             }
             
             cout << "Total Harga : " << harga << endl;
+
+            int uang;
+            cout << "Masukkan uang anda : ";
+            cin >> uang;
+
+            if (uang >= harga) {
+                int kembalian = uang - harga;
+                cout << "Kembalian : " << kembalian << endl;
+            } else {
+                cout << "Uang tidak cukup" << endl;
+            }
             
         } else if (jenisObat == 2) {
             int namaObat2 = menuObatPusingSirup();
@@ -109,6 +124,20 @@ int main() {
             } else {
                 cout << "Pilihan Tidak ada";
             }
+
+            cout << "Total Harga : " << harga << endl;
+
+            int uang;
+            cout << "Masukkan uang anda : ";
+            cin >> uang;
+
+            if (uang >= harga) {
+                int kembalian = uang - harga;
+                cout << "Kembalian : " << kembalian << endl;
+            } else {
+                cout << "Uang tidak cukup" << endl;
+            }
+            
             
         } else {
             cout << "Tidak ada di pilihan";
@@ -124,9 +153,7 @@ int main() {
         cout << "Pilihan tidak ada";
     }
     
-    
-    
-
-
-
+    cout << "Apakah ada tambahan lagi? : ";
+    cin >> ketentuan;
+    } while (ketentuan == "Ya" || ketentuan == "Yes" || ketentuan == "Tidak" || ketentuan == "No");
 }
