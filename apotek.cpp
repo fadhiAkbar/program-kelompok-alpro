@@ -45,7 +45,7 @@ int menuObatPusingSirup() {
     cout << "2. Tempra Forte" << endl;
     cout << "3. Panadol anak sirup" << endl;
     cout << "4. Termorex" << endl;
-    cout << "Pilih mau obat pusing apa?";
+    cout << "Pilih mau obat pusing apa? : ";
     cin >> pilihNamaObat2;
     cout << endl;
     cout << endl;
@@ -60,9 +60,10 @@ int main() {
     int pilihObat;
     pilihMenu();
     cin >> pilihObat;
-
+    
     if (pilihObat == 1) {
         int jenisObat = menuObatDetail();
+        int metode;
 
         if (jenisObat == 1) {
             int namaObat = menuObatPusingPil();
@@ -90,16 +91,30 @@ int main() {
             
             cout << "Total Harga : " << harga << endl;
 
-            int uang;
-            cout << "Masukkan uang anda : ";
-            cin >> uang;
+            cout << "Mau bayar dengan apa? : " << endl;
+            cout << "1. Cash" << endl;
+            cout << "2. QRIS : " << endl;
+            cout << "Pilih : ";
+            cin >> metode;
 
-            if (uang >= harga) {
-                int kembalian = uang - harga;
-                cout << "Kembalian : " << kembalian << endl;
+            if (metode == 1) {
+                int uang;
+                cout << "Masukkan uang anda : ";
+                cin >> uang;
+    
+                if (uang >= harga) {
+                    int kembalian = uang - harga;
+                    cout << "Kembalian : " << kembalian << endl;
+                } else {
+                    cout << "Uang tidak cukup" << endl;
+                }
+            } else if (metode == 2) {
+                cout << "Silahkan Scan pada barcode tersebut" << endl;
+                cout << "Pembayaran Berhasil" << endl;
             } else {
-                cout << "Uang tidak cukup" << endl;
+                cout << "Metode tidak Valid" << endl;
             }
+            
             
         } else if (jenisObat == 2) {
             int namaObat2 = menuObatPusingSirup();
@@ -124,21 +139,34 @@ int main() {
             } else {
                 cout << "Pilihan Tidak ada";
             }
-
+            
             cout << "Total Harga : " << harga << endl;
+            
+            cout << "Mau bayar dengan apa? : " << endl;
+            cout << "1. Cash" << endl;
+            cout << "2. QRIS" << endl;
+            cout << "Pilih : ";
+            cin >> metode;
+            
+            if (metode == 1) {
+                int uang;
+                cout << "Masukkan uang anda : ";
+                cin >> uang;
+                
+                if (uang >= harga) {
+                    int kembalian = uang - harga;
+                    cout << "Kembalian : " << kembalian << endl;
+                } else {
+                    cout << "Uang tidak cukup" << endl;
+                }
 
-            int uang;
-            cout << "Masukkan uang anda : ";
-            cin >> uang;
-
-            if (uang >= harga) {
-                int kembalian = uang - harga;
-                cout << "Kembalian : " << kembalian << endl;
+            } else if (metode == 2) {
+                cout << "Silahkan Scan pada barcode tersebut" << endl;
+                cout << "Pembayaran Berhasil" << endl;
             } else {
-                cout << "Uang tidak cukup" << endl;
+                cout << "Metode tidak Valid" << endl;
             }
-            
-            
+             
         } else {
             cout << "Tidak ada di pilihan";
         }
@@ -155,5 +183,5 @@ int main() {
     
     cout << "Apakah ada tambahan lagi? : ";
     cin >> ketentuan;
-    } while (ketentuan == "Ya" || ketentuan == "Yes" || ketentuan == "Tidak" || ketentuan == "No");
+    } while (ketentuan == "Ya" || ketentuan == "Yes" || ketentuan == "Y" || ketentuan == "y");
 }
