@@ -1,0 +1,5 @@
+Menu       : Obat Pusing
+Jenis      : Sirup
+Nama Obat  : Panadol Anak
+Harga      : 7000
+--------------------------
