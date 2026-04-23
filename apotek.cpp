@@ -1,159 +1,162 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
+
+void simpanData(string menu, string jenis, string nama, int harga) {
+    ofstream file("catatan.txt", ios::app);
+
+    file << "Menu       : " << menu << endl;
+    file << "Jenis      : " << jenis << endl;
+    file << "Nama Obat  : " << nama << endl;
+    file << "Harga      : " << harga << endl;
+    file << "--------------------------" << endl;
+
+    file.close();
+}
+
+
+void tampilkanData() {
+    ifstream file("catatan.txt");
+    string baris;
+
+    cout << "\n===== DATA PEMBELIAN =====\n";
+
+    while (getline(file, baris)) {
+        cout << baris << endl;
+    }
+
+    file.close();
+}
+
+
 void pilihMenu() {
-    cout << "===== Kasir Apotek =====" << endl;
+    cout << "\n===== Kasir Apotek =====" << endl;
     cout << "1. Obat Pusing" << endl;
     cout << "2. Obat Batuk Pilek" << endl;
     cout << "3. Obat Lambung" << endl;
-    cout << "Mau nyari obat apa kak? : ";    
+    cout << "4. Lihat Data Pembelian" << endl;
+    cout << "Pilih menu : ";
 }
 
 int menuObatDetail() {
     int pilih;
-
-    cout << "===== Kategori jenis obat =====" << endl;
-    cout << "1. Obat Pil" << endl;
-    cout << "2. Obat Sirup" << endl;
-    cout << "Pilih Jenis apa? : ";
+    cout << "\n===== Jenis Obat =====" << endl;
+    cout << "1. Pil" << endl;
+    cout << "2. Sirup" << endl;
+    cout << "Pilih : ";
     cin >> pilih;
-    cout << endl;
-    cout << endl;
     return pilih;
 }
 
 int menuObatPusingPil() {
-    int pilihNamaObat;
-
-    cout << "===== Menu obat pusing =====" << endl;
+    int pilih;
+    cout << "\n===== Obat Pusing (Pil) =====" << endl;
     cout << "1. Sanmol" << endl;
     cout << "2. Bodrex" << endl;
     cout << "3. Paramex" << endl;
     cout << "4. Panadol Extra" << endl;
-    cout << "Pilih mau obat pusing apa? : ";
-    cin >> pilihNamaObat;
-    cout << endl;
-    cout << endl;
-    return pilihNamaObat;
+    cout << "Pilih : ";
+    cin >> pilih;
+    return pilih;
 }
 
 int menuObatPusingSirup() {
-    int pilihNamaObat2;
-
-    cout << "===== Menu obat pusing =====" << endl;
+    int pilih;
+    cout << "\n===== Obat Pusing (Sirup) =====" << endl;
     cout << "1. Sanmol Sirup" << endl;
     cout << "2. Tempra Forte" << endl;
-    cout << "3. Panadol anak sirup" << endl;
+    cout << "3. Panadol Anak" << endl;
     cout << "4. Termorex" << endl;
-    cout << "Pilih mau obat pusing apa?";
-    cin >> pilihNamaObat2;
-    cout << endl;
-    cout << endl;
-    return pilihNamaObat2;
+    cout << "Pilih : ";
+    cin >> pilih;
+    return pilih;
+}
+
+
+void pembayaran(int harga) {
+    int metode;
+    cout << "\nTotal Harga : " << harga << endl;
+    cout << "Metode Pembayaran:\n1. Cash\n2. QRIS\nPilih : ";
+    cin >> metode;
+
+    if (metode == 1) {
+        int uang;
+        cout << "Masukkan uang : ";
+        cin >> uang;
+
+        if (uang >= harga) {
+            cout << "Kembalian : " << uang - harga << endl;
+        } else {
+            cout << "Uang tidak cukup!\n";
+        }
+
+    } else if (metode == 2) {
+        cout << "Silakan scan QRIS...\nPembayaran berhasil!\n";
+    } else {
+        cout << "Metode tidak valid!\n";
+    }
 }
 
 
 int main() {
-    string ketentuan;
-    
+    string ulang;
+
     do {
-    int pilihObat;
-    pilihMenu();
-    cin >> pilihObat;
+        int pilihObat;
+        pilihMenu();
+        cin >> pilihObat;
 
-    if (pilihObat == 1) {
-        int jenisObat = menuObatDetail();
+        if (pilihObat == 1) {
+            int jenis = menuObatDetail();
 
-        if (jenisObat == 1) {
-            int namaObat = menuObatPusingPil();
-            int harga = 0;
+            if (jenis == 1) {
+                int pilih = menuObatPusingPil();
+                int harga = 0;
+                string nama = "";
 
-            if (namaObat == 1) {
-                harga = 5000;
-                cout << "Kamu memilih Sanmol";    
-                
-            } else if (namaObat == 2) {
-                harga = 7000;
-                cout << "Kamu memilih Bodrex";    
-                
-            } else if (namaObat == 3) {
-                harga = 6000;
-                cout << "Kamu memilih Paramex";    
-                
-            } else if (namaObat == 4) {
-                harga = 8000;
-                cout << "Kamu memilih Panadol Extra";    
-                
-            } else {
-                cout << "Pilihan Tidak ada";
-            }
-            
-            cout << "Total Harga : " << harga << endl;
+                if (pilih == 1) { harga = 5000; nama = "Sanmol"; }
+                else if (pilih == 2) { harga = 7000; nama = "Bodrex"; }
+                else if (pilih == 3) { harga = 6000; nama = "Paramex"; }
+                else if (pilih == 4) { harga = 8000; nama = "Panadol Extra"; }
+                else { cout << "Pilihan tidak ada\n"; }
 
-            int uang;
-            cout << "Masukkan uang anda : ";
-            cin >> uang;
+                cout << "Kamu memilih " << nama << endl;
 
-            if (uang >= harga) {
-                int kembalian = uang - harga;
-                cout << "Kembalian : " << kembalian << endl;
-            } else {
-                cout << "Uang tidak cukup" << endl;
-            }
-            
-        } else if (jenisObat == 2) {
-            int namaObat2 = menuObatPusingSirup();
-            int harga = 0;
-            
-            if (namaObat2 == 1) {
-                harga = 5000;
-                cout << "Kamu memilih Sanmol Sirup";    
-                
-            } else if (namaObat2 == 2) {
-                harga = 6000;
-                cout << "Kamu memilih Tempra Forte";    
-                
-            } else if (namaObat2 == 3) {
-                harga = 7000;
-                cout << "Kamu memilih Panadol anak sirup";    
-                
-            } else if (namaObat2 == 4) {
-                harga = 8000;
-                cout << "Kamu memilih Termorex";    
-                
-            } else {
-                cout << "Pilihan Tidak ada";
+                pembayaran(harga);
+                simpanData("Obat Pusing", "Pil", nama, harga);
+
+            } else if (jenis == 2) {
+                int pilih = menuObatPusingSirup();
+                int harga = 0;
+                string nama = "";
+
+                if (pilih == 1) { harga = 5000; nama = "Sanmol Sirup"; }
+                else if (pilih == 2) { harga = 6000; nama = "Tempra Forte"; }
+                else if (pilih == 3) { harga = 7000; nama = "Panadol Anak"; }
+                else if (pilih == 4) { harga = 8000; nama = "Termorex"; }
+                else { cout << "Pilihan tidak ada\n"; }
+
+                cout << "Kamu memilih " << nama << endl;
+
+                pembayaran(harga);
+                simpanData("Obat Pusing", "Sirup", nama, harga);
             }
 
-            cout << "Total Harga : " << harga << endl;
-
-            int uang;
-            cout << "Masukkan uang anda : ";
-            cin >> uang;
-
-            if (uang >= harga) {
-                int kembalian = uang - harga;
-                cout << "Kembalian : " << kembalian << endl;
-            } else {
-                cout << "Uang tidak cukup" << endl;
-            }
-            
-            
+        } else if (pilihObat == 2) {
+            /* code */
+        } else if (pilihObat == 3) {
+            /* code */
+        } else if (pilihObat == 4) {
+            tampilkanData();
         } else {
-            cout << "Tidak ada di pilihan";
+            cout << "Menu belum tersedia\n";
         }
-        
-        
-        
-    } else if (pilihObat == 2) {
-        menuObatDetail();
-    } else if (pilihObat == 3) {
-        menuObatDetail();
-    } else {
-        cout << "Pilihan tidak ada";
-    }
-    
-    cout << "Apakah ada tambahan lagi? : ";
-    cin >> ketentuan;
-    } while (ketentuan == "Ya" || ketentuan == "Yes" || ketentuan == "Tidak" || ketentuan == "No");
+
+        cout << "\nMau transaksi lagi? (Ya/Tidak): ";
+        cin >> ulang;
+
+    } while (ulang == "Ya" || ulang == "ya");
+
+    return 0;
 }
