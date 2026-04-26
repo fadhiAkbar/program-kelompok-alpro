@@ -1,0 +1,5 @@
+Menu       : Obat Pusing
+Jenis      : Pil
+Nama Obat  : Sanmol
+Harga      : 5000
+--------------------------
