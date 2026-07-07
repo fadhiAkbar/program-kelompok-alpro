@@ -1,0 +1,5 @@
+Pembeli     : Fadhil
+Obat        : Paracetamol
+Jumlah Beli : 2
+Total Bayar : Rp10000
+--------------------------
