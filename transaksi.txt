@@ -3,3 +3,8 @@ Obat        : Paracetamol
 Jumlah Beli : 2
 Total Bayar : Rp10000
 --------------------------
+Pembeli     : fadhil
+Obat        : Ibuprofen
+Jumlah Beli : 2
+Total Bayar : Rp14000
+--------------------------

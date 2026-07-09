@@ -5,22 +5,24 @@ using namespace std;
 
 #define MAX 100
 #define JUMLAH_CABANG 3
+class Apotek {
+private:
+    string kodeObat[MAX];
+    string namaObat[MAX];
+    string jenisObat[MAX];
+    int hargaObat[MAX];
+    int kategoriObat[MAX];          
+    int stokCabang[MAX][JUMLAH_CABANG]; 
+    int jumlahObatSekarang = 0;
 
-string kodeObat[MAX];
-string namaObat[MAX];
-string jenisObat[MAX];
-int hargaObat[MAX];
-int kategoriObat[MAX];          
-int stokCabang[MAX][JUMLAH_CABANG]; 
-int jumlahObatSekarang = 0;
+    string pembeliTransaksi[MAX];
+    string namaObatTransaksi[MAX];
+    int jumlahBeliTransaksi[MAX];
+    int totalBayarTransaksi[MAX];
+    int jumlahTransaksi = 0;
 
-string pembeliTransaksi[MAX];
-string namaObatTransaksi[MAX];
-int jumlahBeliTransaksi[MAX];
-int totalBayarTransaksi[MAX];
-int jumlahTransaksi = 0;
-
-void tambahObatManual(string kode, string nama, string jenis, int harga, int kategori,
+public:
+    void tambahObatManual(string kode, string nama, string jenis, int harga, int kategori,
                        int stok1, int stok2, int stok3) {
     int index = jumlahObatSekarang;
 
@@ -260,10 +262,12 @@ void tampilkanRiwayat() {
     }
     file.close();
 }
+};
 
 // ================= MENU UTAMA =================
 int main() {
-    inisialisasiDataObat(); // data obat langsung terisi, tidak perlu input manual
+    Apotek apotek;
+    apotek.inisialisasiDataObat(); // data obat langsung terisi, tidak perlu input manual
 
     int pilihan;
 
@@ -281,13 +285,13 @@ int main() {
         cin >> pilihan;
 
         switch (pilihan) { // KONDISIONAL
-            case 1: tampilkanMenuObat(); break;
-            case 2: tampilkanIteratif(); break;
-            case 3: tampilkanRekursif(0); break;
-            case 4: urutkanHarga(); break;
-            case 5: cariObat(); break;
-            case 6: transaksiJual(); break;
-            case 7: tampilkanRiwayat(); break;
+            case 1: apotek.tampilkanMenuObat(); break;
+            case 2: apotek.tampilkanIteratif(); break;
+            case 3: apotek.tampilkanRekursif(0); break;
+            case 4: apotek.urutkanHarga(); break;
+            case 5: apotek.cariObat(); break;
+            case 6: apotek.transaksiJual(); break;
+            case 7: apotek.tampilkanRiwayat(); break;
             case 9: cout << "Terima kasih!\n"; break;
             default: cout << "Pilihan tidak valid!\n";
         }
